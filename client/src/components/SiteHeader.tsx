@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -27,9 +28,7 @@ export default function SiteHeader() {
           href="/"
           className="flex items-center gap-2 no-underline text-foreground hover:opacity-90"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
-            <span className="text-white font-bold text-sm leading-none">以</span>
-          </div>
+          <BrandMark className="w-8 h-8" alt="" />
           <span className="font-bold text-lg font-poppins tracking-tight">以太数字</span>
         </Link>
 

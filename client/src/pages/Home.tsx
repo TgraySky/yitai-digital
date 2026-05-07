@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandMark";
 import HeroEnergyVisual from "@/components/HeroEnergyVisual";
 import SiteHeader from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
@@ -411,9 +412,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm leading-none">以</span>
-                </div>
+                <BrandMark className="w-8 h-8" alt="" />
                 <span className="font-bold font-poppins tracking-tight">以太数字</span>
               </div>
               <p className="text-sm text-muted-foreground">
