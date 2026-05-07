@@ -1,4 +1,3 @@
-import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import fs from "node:fs";
@@ -203,10 +202,24 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+async function optionalJsxLocPlugin(): Promise<Plugin[]> {
+  try {
+    const { jsxLocPlugin } = await import("@builder.io/vite-plugin-jsx-loc");
+    return [jsxLocPlugin()];
+  } catch {
+    return [];
+  }
+}
 
-export default defineConfig({
-  plugins,
+export default defineConfig(async () => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(await optionalJsxLocPlugin()),
+    vitePluginManusRuntime(),
+    vitePluginManusDebugCollector(),
+    vitePluginStorageProxy(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -238,4 +251,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));
